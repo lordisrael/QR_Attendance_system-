@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send('<h1>BlackCardCoin API</h1><a href="/api-docs">Documentation</a>');
+  res.send('<h1>CPE_QR ATTENDANCE API</h1><a href="/api-docs">Documentation</a>');
 });
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
