@@ -1,0 +1,326 @@
+openapi: 3.0.0
+info:
+  title: CPE_QR
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://qr-attendance-system-a9qo.onrender.com/api
+  variables: {}
+paths:
+  /lecturer/register:
+    post:
+      tags:
+      - Misc
+      summary: Register Lecturer
+      operationId: RegisterLecturer
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RegisterLecturerRequest'
+              - example:
+                  email: Fakeye@gmail.com
+                  password: lucas
+                  full_name: fakeye lucas
+                  department: Computer Engineering
+            example:
+              email: Fakeye@gmail.com
+              password: lucas
+              full_name: fakeye lucas
+              department: Computer Engineering
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /lecturer/login:
+    post:
+      tags:
+      - Misc
+      summary: Login lecturer
+      operationId: Loginlecturer
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LoginlecturerRequest'
+              - example:
+                  email: Fakeye@gmail.com
+                  password: lucas
+            example:
+              email: Fakeye@gmail.com
+              password: lucas
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /lecturer/create-attendance:
+    post:
+      tags:
+      - Misc
+      summary: Create attendance
+      operationId: Createattendance
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateattendanceRequest'
+              - example:
+                  course_title: Embedded systems
+                  course_duration: '2'
+                  course_topic: Microcomputer Organization
+                  course_code: CPE509
+                  topic_description: What a good topic
+            example:
+              course_title: Embedded systems
+              course_duration: '2'
+              course_topic: Microcomputer Organization
+              course_code: CPE509
+              topic_description: What a good topic
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /student/register:
+    post:
+      tags:
+      - Misc
+      summary: Register student
+      operationId: Registerstudent
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RegisterstudentRequest'
+              - example:
+                  matric_no: CPE/18/6654
+                  department: Computer engineering
+                  full_name: Fakeye Samuel
+                  password: Agbadev
+                  level: 400
+            example:
+              matric_no: CPE/18/6654
+              department: Computer engineering
+              full_name: Fakeye Samuel
+              password: Agbadev
+              level: 400
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /student/login:
+    post:
+      tags:
+      - Misc
+      summary: Login student
+      operationId: Loginstudent
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LoginstudentRequest'
+              - example:
+                  matric_no: CPE/18/6654
+                  password: Agbadev
+            example:
+              matric_no: CPE/18/6654
+              password: Agbadev
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /student/scan-qr:
+    put:
+      tags:
+      - Misc
+      summary: Scan QR CODE
+      operationId: ScanQRCODE
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ScanQRCODERequest'
+              - example:
+                  qrCodeData: data:image/png;base64,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
+            example:
+              qrCodeData: data:image/png;base64,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
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /lecturer/attendance/{attendanceId}:
+    get:
+      tags:
+      - Misc
+      summary: List of attendance
+      operationId: Listofattendance
+      parameters: 
+        - in: path
+          name: attendanceId
+          schema:
+            type: string 
+          required: true
+          description: Numeric ID of the attendance to get
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+components:
+  schemas:
+    RegisterLecturerRequest:
+      title: RegisterLecturerRequest
+      required:
+      - email
+      - password
+      - full_name
+      - department
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        full_name:
+          type: string
+        department:
+          type: string
+      example:
+        email: Fakeye@gmail.com
+        password: lucas
+        full_name: fakeye lucas
+        department: Computer Engineering
+    LoginlecturerRequest:
+      title: LoginlecturerRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: Fakeye@gmail.com
+        password: lucas
+    CreateattendanceRequest:
+      title: CreateattendanceRequest
+      required:
+      - course_title
+      - course_duration
+      - course_topic
+      - course_code
+      - topic_description
+      type: object
+      properties:
+        course_title:
+          type: string
+        course_duration:
+          type: string
+        course_topic:
+          type: string
+        course_code:
+          type: string
+        topic_description:
+          type: string
+      example:
+        course_title: Embedded systems
+        course_duration: '2'
+        course_topic: Microcomputer Organization
+        course_code: CPE509
+        topic_description: What a good topic
+    RegisterstudentRequest:
+      title: RegisterstudentRequest
+      required:
+      - matric_no
+      - department
+      - full_name
+      - password
+      - level
+      type: object
+      properties:
+        matric_no:
+          type: string
+        department:
+          type: string
+        full_name:
+          type: string
+        password:
+          type: string
+        level:
+          type: integer
+          format: int32
+      example:
+        matric_no: CPE/18/6654
+        department: Computer engineering
+        full_name: Fakeye Samuel
+        password: Agbadev
+        level: 400
+    LoginstudentRequest:
+      title: LoginstudentRequest
+      required:
+      - matric_no
+      - password
+      type: object
+      properties:
+        matric_no:
+          type: string
+        password:
+          type: string
+      example:
+        matric_no: CPE/18/6654
+        password: Agbadev
+    ScanQRCODERequest:
+      title: ScanQRCODERequest
+      required:
+      - qrCodeData
+      type: object
+      properties:
+        qrCodeData:
+          type: string
+      example:
+        qrCodeData: data:image/png;base64,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
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Misc
+  description: ''
